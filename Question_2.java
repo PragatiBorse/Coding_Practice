@@ -1,37 +1,18 @@
-package com.arrays;
+package com.strings;
+/* Write a Java program to get the contents of a given string as a byte array. */
 
-/* Given an integer array num sorted in non-decreasing order,remove the duplicates
- in-place such that each unique element appears only once. The relative order of the
-  elements should be kept the same. Then return the number of unique elements in num.
- */
 public class Question_2 {
-    public int removeDuplicates(int[] num) {
-        int j = 1;
-        for (int i = 1; i < num.length; i++) {
-            if (num[i] != num[i - 1]) {
-                num[j] = num[i];
-                j++;
-            }
-        }
-        return j;
-    }
 
-    public static void main(String[] args) {
-        // Create an instance of HelloWorld
-        Question_2 q = new Question_2();
+    public static void main(String[] args)
+    {
+        String str = "This is a sample String.";
 
-        // Example array
-        int[] num = {1, 1, 2, 2, 2, 3, 4, 4, 5, 5};
+        byte[] byte_arr = str.getBytes();
 
-        // Call the removeDuplicates method and pass the array as an argument
-        int n = q.removeDuplicates(num);
+        String new_str = new String(byte_arr);
 
-        // Print the modified array and its length
-        System.out.println("Modified Array:");
-        for (int i = 0; i < n; i++) {
-            System.out.print(num[i] + " ");
-        }
-        System.out.println("\nLength of Modified Array: " + n);
+
+        System.out.println("\nThe new String equals " +
+                new_str + "\n");
     }
 }
-

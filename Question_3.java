@@ -1,31 +1,30 @@
-package com.arrays;
+package com.strings;
 
-/* Given an integer array nums sorted in non-decreasing order, remove some duplicates
- in-place such that each unique element appears at most twice. The relative order of the
- elements should be kept the same.*/
+/* Write a Java program to find all interleavings of given strings. */
+
 public class Question_3 {
-    public int removeDuplicates(int[] num){
-        int j=2;
-       for(int i=2;i<num.length;i++){
-           if(num[i] != num[i-2]){
-               num[j] = num[i];
-               j++;
-           }
-       }
-        return j;
-    }
-    public static void main(String[] args){
-
-        Question_3 question3 = new Question_3();
-
-        int[] num={4, 3, 3, 4, 2, 3, 7, 3, 4, 4, 1, 2, 5, 6};
-
-        int n=question3.removeDuplicates(num);
-
-        for(int i=0;i<n;i++){
-            System.out.print(num[i]+ " ");
+    public static void findInterleavings(String s1, String s2, String interleaving) {
+        if (s1.length() == 0 && s2.length() == 0) {
+            System.out.println(interleaving);
+            return;
         }
-        System.out.println();
-        System.out.println("\nLength of Modified Array: " + n);
+
+        if (s1.length() > 0) {
+            findInterleavings(s1.substring(1), s2, interleaving + s1.charAt(0));
+        }
+
+        if (s2.length() > 0) {
+            findInterleavings(s1, s2.substring(1), interleaving + s2.charAt(0));
+        }
+    }
+
+    public static void main(String[] args) {
+        String s1 = "WX";
+        String s2 = "YZ";
+
+        System.out.println("The given strings are: " + s1 + " " + s2);
+        System.out.println("The interleavings strings are: ");
+        findInterleavings(s1, s2, "");
     }
 }
+

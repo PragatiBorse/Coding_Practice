@@ -1,34 +1,27 @@
-package com.arrays;
+package com.strings;
+/* How to check if one String is rotation of another String in java */
+public class Question_4 {
 
-/* Given an array nums of size n, return the majority element. The majority element is the
- element that appears more than ⌊n / 2⌋ times. You may assume that the majority element
- always exists in the array. Example 1: Input: nums = [3,2,3] Output: 3 */
+        public static boolean isRotation(String s1, String s2) {
 
-class Question_4 {
-    public int majorityElement(int[] nums) {
-        int count = 0;
-        int majority = 0;
+            if (s1.length() != s2.length() || s1.length() == 0) {
+                return false;
+            }
 
-        for (int i = 0; i < nums.length; i++) {
+            String concatenated = s1 + s1;
 
-            if (count == 0 && majority != nums[i]) {
-                majority = nums[i];
-                count = 1;
-            } else if (majority == nums[i]) {
-                count++;
+            return concatenated.contains(s2);
+        }
+
+        public static void main(String[] args) {
+            String s1 = "abcdef";
+            String s2 = "defabc";
+
+            if (isRotation(s1, s2)) {
+                System.out.println(s2 + " is a rotation of " + s1);
             } else {
-                count--;
+                System.out.println(s2 + " is not a rotation of " + s1);
             }
         }
-        return majority;
     }
-    public static void main(String[] args) {
-        int[] nums = {3, 3, 4, 2, 4, 4, 2, 4, 4};
 
-        Question_4 question = new Question_4();
-
-        int majorityElement = question.majorityElement(nums);
-
-        System.out.println("The majority element is: " + majorityElement);
-    }
-}

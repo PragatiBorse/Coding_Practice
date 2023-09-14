@@ -1,19 +1,35 @@
-package com.arrays;
-/* Given an integer array nums and an integer val, remove all occurrences
-of val in nums in-place. The order of the elements may be changed.
-Then return the number of elements in nums which are not equal to val.*/
-
-import java.util.*;
+package com.strings;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Question_1 {
-        public static void main(String []args){
-            int[] nums = {3,2,2,3}; int val = 3; int count=0 ;
-            for(int i=0;i<nums.length;i++){
-                if(val != nums[i]){
-                    count++;
-                }
 
-            }System.out.println(count);
+    public static int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
         }
+
+        Map<Character, Integer> charIndexMap = new HashMap<>();
+        int maxLength = 0;
+        int startIndex = 0;
+
+        for (int endIndex = 0; endIndex < s.length(); endIndex++) {
+            char currentChar = s.charAt(endIndex);
+
+            if (charIndexMap.containsKey(currentChar)) {
+                startIndex = Math.max(startIndex, charIndexMap.get(currentChar) + 1);
+            }
+
+            charIndexMap.put(currentChar, endIndex);
+            maxLength = Math.max(maxLength, endIndex - startIndex + 1);
+        }
+
+        return maxLength;
     }
 
+    public static void main(String[] args) {
+        String input = "abcabcbb";
+        int result = lengthOfLongestSubstring(input);
+        System.out.println("The length of the longest substring without repeating characters is: " + result);
+    }
+}

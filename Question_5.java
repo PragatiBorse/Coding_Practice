@@ -1,50 +1,31 @@
-package com.arrays;
+package com.strings;
 
-/* Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
-Example: Input: nums = [1,2,3,4,5,6,7], k = 3  Output: [5,6,7,1,2,3,4] */
+/* Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes
+the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+Assume the environment does not allow you to store 64-bit integers (signed or unsigned). */
 
 public class Question_5 {
-    public void rotate(int[] nums, int k) {
-        int n = nums.length;
-        k %= n; // In case k is greater than the length of the array
-
-        // Reverse the entire array
-        reverse(nums, 0, n - 1);
-
-        // Reverse the first k elements
-        reverse(nums, 0, k - 1);
-
-        // Reverse the remaining n - k elements
-        reverse(nums, k, n - 1);
-    }
-
-    private void reverse(int[] nums, int start, int end) {
-        while (start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
+    public int reverse(int x) {
+        long finalNum = 0;
+        while(x!=0){
+            int lastDig = x%10;
+            finalNum += lastDig;
+            finalNum = finalNum*10;
+            x= x/10;
         }
+        finalNum = finalNum/10;
+        if(finalNum > Integer.MAX_VALUE || finalNum<Integer.MIN_VALUE){
+            return 0;
+        }
+        if(x<0){
+            return (int)(-1*finalNum);
+        }
+        return (int)finalNum;
     }
-
     public static void main(String[] args) {
-        // Example input array
-        int[] nums = {1, 2, 3, 4, 5, 6, 7};
-
-        // Number of steps to rotate
-        int k = 3;
-
-        // Create an instance of your class (assuming the `rotate` method is in a class)
-        Question_5 rotateArray = new Question_5();
-
-        // Call the rotate method to perform the rotation
-        rotateArray.rotate(nums, k);
-
-        // Print the rotated array
-        System.out.println("Rotated Array:");
-        for (int num : nums) {
-            System.out.print(num + " ");
-        }
+        Question_5 obj = new Question_5();
+        int x = 12345;
+        int reversedX = obj.reverse(x);
+        System.out.println("Reversed integer: " + reversedX);
     }
 }
