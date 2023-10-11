@@ -2,7 +2,7 @@ package com.strings;
 
 /* Given an integer array nums, find the subarray with the largest sum, and return its sum.*/
 
-public class MaxSubArray {
+public class  MaxSubArray {
     public int maxSubArray(int[] nums) {
         int maxSum = Integer.MIN_VALUE;
         int currentSum = 0;
